@@ -15,3 +15,13 @@
 *.exe
 *.out
 *.app
+
+# 
+*.bin
+*.ihx
+*.lnk
+*.map
+*.noi
+*.lst
+*.rel
+*.sym
