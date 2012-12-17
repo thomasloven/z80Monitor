@@ -10,21 +10,35 @@ main:
 	call LCDPos
 	call PIOSetup
 
-	ld a, #0x13
-	call LCDPrintHex
+	call spiPrepare
 
+cmd0:
+	ld d, #6
+	ld hl, #spi_cmd0
+	call spiCommand
+	dec a
+	jr nz, cmd0
+	call LCDPrintHex
+	
+cmd1:
+	ld d, #6
+	ld hl, #spi_cmd1
+	call spiCommand
+	push af
+	pop af
+	and a
+	jr nz, cmd1
+	call LCDPrintHex
 	halt
 
 
-
 s_lcd_setup:
-	.db 0x0F, 0x02, 0x38
+	.db 0x0F, 0x01, 0x38
 s_loading_msg:
-	.asciz "L"
-s_init_msg:
-	.asciz "I"
-s_error_msg:
-	.asciz "E!"
-end:
+	.asciz "Loading"
 
+spi_cmd0:
+	.db 0x40, 0x00, 0x00, 0x00, 0x00, 0x95
+spi_cmd1:
+	.db 0x41, 0x00, 0x00, 0x00, 0x00, 0xFF
 

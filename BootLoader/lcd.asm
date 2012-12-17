@@ -35,6 +35,8 @@ LPSloop:
 	ret
 
 LCDPrintHex:
+	; Prints the byte in a
+	; Does not preserve a!
 	rrca
 	rrca
 	rrca

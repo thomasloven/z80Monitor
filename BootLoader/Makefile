@@ -30,5 +30,5 @@ $(TARGET).ihx: $(SOURCES)
 	$(AS) $(ASFLAGS) $<
 
 clean:
-	-rm -f *.{lst,rel,sym,ihx,lnk,map,mem,noi,rst} 2> /dev/null
-	rm $(TARGET).bin
+	-rm -f *.{hex,lst,rel,sym,ihx,lnk,map,mem,noi,rst} 2> /dev/null
+	rm -f $(TARGET).bin
