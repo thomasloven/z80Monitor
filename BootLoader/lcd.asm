@@ -24,7 +24,7 @@ LCBloop:
 LCDPrintString:
 	; Print null terminated string to LCD
 	; HL - address of first byte
-	; Clobbers: a, b, HL
+	; Clobbers: a, b
 	ld c, #0x01
 LPSloop:
 	call LCDwait

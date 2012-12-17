@@ -35,8 +35,7 @@ SPloop:
 	nop
 	ld a, #0xFE ; Clock low, SS high
 	out (#0x10), a
-	dec b
-	jr nz, SPloop
+	djnz SPloop
 	ret
 
 
@@ -80,8 +79,7 @@ SWBzero:
 SWBsend:
 	call PIOsrec
 	pop af
-	dec b
-	jr nz, SWBloop ; Repeat for all eight bits
+	djnz SWBloop ; Repeat for all eight bits
 	pop bc
 	ret
 	
@@ -102,8 +100,7 @@ SRBloop:
 	or #0x01 ; If a one was received
 
 SRBzero:
-	dec b
-	jr nz, SRBloop ; Repeat for all eight bits
+	djnz SRBloop ; Repeat for all eight bits
 	pop bc
 	ret
 
