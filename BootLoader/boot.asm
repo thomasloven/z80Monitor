@@ -7,7 +7,7 @@ main:
 	call LCDCommandBytes
 	ld hl, #s_loading_msg
 	call LCDPrintString
-	call LCDPos
+	;call LCDPos
 	call PIOSetup
 
 	call spiPrepare
@@ -30,6 +30,7 @@ cmd1:
 	jr nz, cmd1
 	call LCDPrintHex
 	ld hl, #0x1000
+	call LCDPos
 	call sdReadBlock
 	halt
 
@@ -45,9 +46,11 @@ SRBLoop:
 	call spiReadByte
 	jr SRBLoop
 SRBReadData:
+	push hl
 	ld hl, #s_data_start
 	call LCDPrintString
-	ld b, #0xFF
+	pop hl
+	ld b, #0x0F
 SRBReadData2:
 	call spiReadByte
 	ld (HL), a

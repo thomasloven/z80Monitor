@@ -12,11 +12,11 @@ echo Sending $currentByte to $(( currentByte + 63 ))
 
 	if [[ $currentByte -eq 1 ]]; then
 
-		tail -c +0 hello.bin | head -c 64 > $device
+		tail -c +0 $1 | head -c 64 > $device
 
 	else
 
-		tail -c +$currentByte hello.bin | head -c 64 > $device
+		tail -c +$currentByte $1 | head -c 64 > $device
 
 	fi
 

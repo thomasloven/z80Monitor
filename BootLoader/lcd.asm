@@ -4,6 +4,7 @@ LCDPos:
 	call LCDwait
 	ld a, #0xC0
 	out (#0x00), a
+	ret
 
 LCDwait:
 	in a, (#0x00)
@@ -46,7 +47,7 @@ LCDPrintHex:
 	ld a, b
 	and #0x0F
 	or #0x30
-	out (0x01),a
+	out (#0x01),a
 	call LCDWait
 	ld a, b
 	rrca
@@ -55,5 +56,5 @@ LCDPrintHex:
 	rrca
 	and #0x0F
 	or #0x30
-	out (0x01),a
+	out (#0x01),a
 	ret
