@@ -29,9 +29,10 @@ cmd1:
 	and a
 	jr nz, cmd1
 	call LCDPrintHex
-	ld hl, #0x1000
+	ld hl, #0x400
 	call LCDPos
 	call sdReadBlock
+	jp 0x400
 	halt
 
 sdReadBlock:
@@ -50,7 +51,7 @@ SRBReadData:
 	ld hl, #s_data_start
 	call LCDPrintString
 	pop hl
-	ld b, #0x0F
+	ld b, #0xFF
 SRBReadData2:
 	call spiReadByte
 	ld (HL), a

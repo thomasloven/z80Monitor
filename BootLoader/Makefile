@@ -1,5 +1,5 @@
-TARGET = hello
-START = 0x100
+TARGET = BootLoader
+START = 0x00
 SOURCES = $(patsubst %.asm,%.rel,$(shell find . -name "*.asm"))
 
 CC = sdcc # brew install sdcc
